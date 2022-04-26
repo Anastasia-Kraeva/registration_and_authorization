@@ -25,6 +25,7 @@ export const AvailableRoutes: FC<IRoutes> = ({isAuthed = false}): JSX.Element =>
             <>
               <Route path="/" element={<RegisterPage/>}/>
               <Route path="register" element={<RegisterPage/>}/>
+              <Route path="register-verify" element={<RegisterPage/>}/>
               <Route path="auth" element={<AuthPage/>}/>
               <Route path="*" element={<RegisterPage/>}/>
             </>

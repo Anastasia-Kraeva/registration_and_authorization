@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {Container} from '@mui/material';
 import axios from 'axios';
@@ -42,6 +42,16 @@ export const RegisterPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activateAccount = async (key: string) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/register/verify`, {key})
+      return response.data
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   const registration = async (data: any) => {
     try {
@@ -64,6 +74,14 @@ export const RegisterPage = () => {
       console.log(e)
     }
   }
+
+  useEffect(() => {
+    const accessKey = searchParams.get('key')
+
+    if (accessKey) {
+      activateAccount(accessKey)
+    }
+  }, [searchParams])
 
   return (
     <Container maxWidth="xs">
