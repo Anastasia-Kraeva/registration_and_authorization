@@ -1,17 +1,15 @@
 // @ts-nocheck
-import {createAction, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IAppState, userType} from './types';
+import * as actions from '../actions/actionCreaters';
 
-const ADD_USER='ADD_USER'
-const addUser = createAction<userType>(ADD_USER, {})
-
-const initialState: IAppState = localStorage.getItem('user') || {
+const initialState: IAppState = JSON.parse(localStorage.getItem('user')) || {
   data: {
-    nickname: '',
+    username: '',
     email: '',
-    password: '',
-    passwordConfirmation: '',
-    checkword: '',
+    password1: '',
+    password2: '',
+    keyword: '',
   },
   token: '',
 }
@@ -22,10 +20,10 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addUser, (state, action: PayloadAction<userType>) => {
-        state.user = action.payload
+      .addCase(actions.addUser, (state, action: PayloadAction<userType>) => {
+        state.data = {...state.data, ...action.payload};
       })
   }
 })
 
-export default userSlice.reducer
+export default userSlice.reducer;
