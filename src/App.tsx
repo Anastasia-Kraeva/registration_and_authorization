@@ -1,9 +1,10 @@
 // @ts-nocheck
 import React from 'react';
-import {CssBaseline} from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 
-import {AvailableRoutes} from './routes';
 import {useTypedSelector} from './hooks/typedSelector';
+
+import AvailableRoutes from './routes';
 
 const App = () => {
   const {access} = useTypedSelector(state => state.token)

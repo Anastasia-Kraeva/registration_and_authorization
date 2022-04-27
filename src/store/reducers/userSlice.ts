@@ -1,5 +1,6 @@
 // @ts-nocheck
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+
 import {IAppState, userType} from './types';
 import * as actions from '../actions/actionCreaters';
 
@@ -12,7 +13,7 @@ const initialState: IAppState = JSON.parse(localStorage.getItem('user')) || {
     keyword: '',
     confirmationCode: '1234',
   }
-}
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -24,6 +25,6 @@ export const userSlice = createSlice({
         state.data = {...state.data, ...action.payload};
       })
   }
-})
+});
 
 export default userSlice.reducer;

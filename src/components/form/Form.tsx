@@ -1,8 +1,13 @@
 // @ts-nocheck
-import React, {useState} from 'react';
-import {Box, Button, Grid, Typography} from '@mui/material';
+import React, {FC, useState} from 'react';
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 import {useTypedSelector} from '../../hooks/typedSelector';
+
 import Input from '../input/Input';
 
 export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSubmit}): JSX.Element => {
@@ -15,9 +20,9 @@ export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSub
     setFormData({
       ...formData,
       [name]: value.trim(),
-    })
-  }
-  console.log('formData', formData)
+    });
+  };
+
   return (
     <Box>
       <Typography component="h1" variant="h5">
@@ -36,14 +41,14 @@ export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSub
                   onChange={handleChange}
                 />
               </Grid>
-            )
+            );
           })}
           <Grid item sm={12}>
             <Button
               variant="contained"
               fullWidth
               onClick={() => {
-                handleSubmit(formData)
+                handleSubmit(formData);
               }}
             >
               {formButtonText}
@@ -52,5 +57,7 @@ export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSub
         </Grid>
       </form>
     </Box>
-  )
-}
+  );
+};
+
+export default Form;

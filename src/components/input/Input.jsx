@@ -1,5 +1,6 @@
-import React from 'react';
-import {TextField} from '@mui/material';
+import React, {FC} from 'react';
+import TextField from '@mui/material/TextField';
+
 import {useTypedSelector} from '../../hooks/typedSelector';
 
 const Input = (props) => {

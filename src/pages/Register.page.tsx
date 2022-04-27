@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {Container} from '@mui/material';
-import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {useSearchParams} from 'react-router-dom';
+import axios from 'axios';
+
+import Container from '@mui/material/Container';
 
 import {BASE_URL} from '../constants/constants';
 import * as actions from '../store/actions/actionCreaters';
-import {Form} from '../components/form/Form';
 
-export const RegisterPage = () => {
+import Form from '../components/form/Form';
+
+const RegisterPage = () => {
   const formRenderingData = {
     formHeader: 'Регистрация',
     fieldsList: [
@@ -38,31 +40,31 @@ export const RegisterPage = () => {
     ],
     formButtonText: 'Зарегистрироваться',
     handleSubmit: handleSubmit,
-  }
+  };
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const activateAccount = async (key: string) => {
     try {
-      const response = await axios.post(`${BASE_URL}/register/verify`, {key})
-      console.log('activateAccount', response)
-      return response.data
+      const response = await axios.post(`${BASE_URL}/register/verify`, {key});
+      console.log('activateAccount', response);
+      return response.data;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   const registration = async (data: any) => {
     try {
-      const response = await axios.post(`${BASE_URL}/register/`, data)
-      console.log('registration', response)
-      return response.data
+      const response = await axios.post(`${BASE_URL}/register/`, data);
+      console.log('registration', response);
+      return response.data;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   async function handleSubmit(formData: any) {
     try {
@@ -71,22 +73,24 @@ export const RegisterPage = () => {
       // localStorage.setItem('user', JSON.stringify({data: userData}));
       // dispatch(actions.addUser(userData));
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
   useEffect(() => {
-    const accessKey = searchParams.get('key')
+    const accessKey = searchParams.get('key');
 
     if (accessKey) {
-      // activateAccount(accessKey)
-      navigate(`/auth`)
+      // activateAccount(accessKey);
+      navigate(`/auth`);
     }
-  }, [searchParams])
+  }, [searchParams]);
 
   return (
     <Container maxWidth="xs">
       <Form {...formRenderingData}/>
     </Container>
-  )
-}
+  );
+};
+
+export default RegisterPage;

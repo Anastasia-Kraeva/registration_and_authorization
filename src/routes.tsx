@@ -1,15 +1,15 @@
 // @ts-nocheck
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-import {AuthPage} from './pages/Auth.page';
-import {HomePage} from './pages/Home.page';
-import {RegisterPage} from './pages/Register.page';
+import AuthPage from './pages/Auth.page';
+import HomePage from './pages/Home.page';
+import RegisterPage from './pages/Register.page';
 
 interface IRoutes {
   hasToken?: boolean;
 }
 
-export const AvailableRoutes: FC<IRoutes> = ({isAuthed}): JSX.Element => {
+const AvailableRoutes: FC<IRoutes> = ({isAuthed}): JSX.Element => {
   return (
     <BrowserRouter>
       <Routes>
@@ -33,3 +33,5 @@ export const AvailableRoutes: FC<IRoutes> = ({isAuthed}): JSX.Element => {
     </BrowserRouter>
   )
 }
+
+export default AvailableRoutes;
