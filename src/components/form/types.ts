@@ -17,4 +17,5 @@ export interface IFormData {
   password1: string;
   password2?: string;
   keyword?: string;
+  confirmationCode?: string;
 }

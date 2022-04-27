@@ -10,8 +10,8 @@ const initialState: IAppState = JSON.parse(localStorage.getItem('user')) || {
     password1: '',
     password2: '',
     keyword: '',
-  },
-  token: '',
+    confirmationCode: '1234',
+  }
 }
 
 export const userSlice = createSlice({
