@@ -9,8 +9,7 @@ interface IRoutes {
   hasToken?: boolean;
 }
 
-export const AvailableRoutes: FC<IRoutes> = ({isAuthed = false}): JSX.Element => {
-
+export const AvailableRoutes: FC<IRoutes> = ({isAuthed}): JSX.Element => {
   return (
     <BrowserRouter>
       <Routes>

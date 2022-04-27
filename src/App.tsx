@@ -6,12 +6,12 @@ import {AvailableRoutes} from './routes';
 import {useTypedSelector} from './hooks/typedSelector';
 
 const App = () => {
-  const {token} = useTypedSelector(state => state.user)
+  const {access} = useTypedSelector(state => state.token)
 
   return (
     <>
       <CssBaseline/>
-      <AvailableRoutes hasToken={!!token}/>
+      <AvailableRoutes isAuthed={!!access}/>
     </>
   );
 }
