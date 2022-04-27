@@ -18,10 +18,12 @@ export const tokenSlice = createSlice({
             state[key] = action.payload[key];
           });
       })
-    .addCase(actions.logout, (state, action: PayloadAction<userType>) => {
-      console.log('token logout')
-      state = {};
-    })
+      .addCase(actions.logout, (state, action: PayloadAction<userType>) => {
+        Object.keys(state)
+          .forEach((key: any) => {
+            state[key] = null;
+          });
+      });
   }
 });
 

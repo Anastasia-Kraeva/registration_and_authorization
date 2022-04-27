@@ -24,6 +24,9 @@ export const userSlice = createSlice({
       .addCase(actions.addUser, (state, action: PayloadAction<userType>) => {
         state.data = {...state.data, ...action.payload};
       })
+      .addCase(actions.logout, (state, action: PayloadAction<userType>) => {
+        state.data = {};
+      });
   }
 });
 

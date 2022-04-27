@@ -17,12 +17,12 @@ const AvailableRoutes: FC<IRoutes> = ({isAuthed}): JSX.Element => {
           ? (
             <>
               <Route path="/" element={<HomePage/>}/>
-              <Route path="*" element={<p>**</p>}/>
+              <Route path="*" element={<HomePage/>}/>
             </>
           )
           : (
             <>
-              <Route path="/" element={<RegisterPage/>}/>
+              <Route path="/" element={<HomePage/>}/>
               <Route path="register" element={<RegisterPage/>}/>
               <Route path="register-verify" element={<RegisterPage/>}/>
               <Route path="auth" element={<AuthPage/>}/>
