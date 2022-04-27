@@ -11,7 +11,7 @@ import {Form} from '../components/form/Form';
 
 export const RegisterPage = () => {
   const formRenderingData = {
-    formHeader: 'Вход в систему',
+    formHeader: 'Регистрация',
     fieldsList: [
       {
         name: 'username',
@@ -47,6 +47,7 @@ export const RegisterPage = () => {
   const activateAccount = async (key: string) => {
     try {
       const response = await axios.post(`${BASE_URL}/register/verify`, {key})
+      console.log('activateAccount', response)
       return response.data
     } catch (e) {
       console.log(e)
@@ -56,7 +57,7 @@ export const RegisterPage = () => {
   const registration = async (data: any) => {
     try {
       const response = await axios.post(`${BASE_URL}/register/`, data)
-      console.log(response)
+      console.log('registration', response)
       return response.data
     } catch (e) {
       console.log(e)
@@ -69,7 +70,6 @@ export const RegisterPage = () => {
       // const userData = await registration(formData)
       // localStorage.setItem('user', JSON.stringify({data: userData}));
       // dispatch(actions.addUser(userData));
-      navigate(`/auth`)
     } catch (e) {
       console.log(e)
     }
@@ -79,7 +79,8 @@ export const RegisterPage = () => {
     const accessKey = searchParams.get('key')
 
     if (accessKey) {
-      activateAccount(accessKey)
+      // activateAccount(accessKey)
+      navigate(`/auth`)
     }
   }, [searchParams])
 
