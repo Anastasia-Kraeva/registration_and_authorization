@@ -1,14 +1,14 @@
 // @ts-nocheck
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit'
 
 import userSlice from './reducers/userSlice';
-
-const rootReducer = combineReducers({
-  user: userSlice,
-})
+import tokenSlice from './reducers/tokenSlice';
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    user: userSlice,
+    token: tokenSlice,
+  },
 })
 
 export type RootState = ReturnType<typeof store.getState>
