@@ -68,10 +68,22 @@ const RegisterPage = () => {
 
   async function handleSubmit(formData: any) {
     try {
-      console.log('submit', formData);
-      // const userData = await registration(formData)
-      // localStorage.setItem('user', JSON.stringify({data: userData}));
-      // dispatch(actions.addUser(userData));
+      const requestData = {};
+
+      Object.keys(formData)
+        .forEach((key: string) => {
+          if (key !== 'confirmationCode') {
+            requestData[key] = formData[key];
+          };
+        });
+
+      console.log('submit', requestData);
+      const userData = await registration(requestData);
+
+      if (userData) {
+        localStorage.setItem('user', JSON.stringify({data: userData}));
+        dispatch(actions.addUser(userData));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -81,7 +93,7 @@ const RegisterPage = () => {
     const accessKey = searchParams.get('key');
 
     if (accessKey) {
-      // activateAccount(accessKey);
+      activateAccount(accessKey);
       navigate(`/auth`);
     }
   }, [searchParams]);
