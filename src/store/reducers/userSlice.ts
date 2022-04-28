@@ -4,16 +4,19 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IAppState, userType} from './types';
 import * as actions from '../actions/actionCreaters';
 
-const initialState: IAppState = JSON.parse(localStorage.getItem('user')) || {
-  data: {
-    username: '',
-    email: '',
-    password1: '',
-    password2: '',
-    keyword: '',
-    confirmationCode: '1234',
+const initialState: IAppState = Object.assign(
+  {
+    data: {
+      username: '',
+      email: '',
+      password1: '',
+      password2: '',
+      keyword: '',
+      confirmationCode: '',
+      ...JSON.parse(localStorage.getItem('user')).data
+    },
   }
-};
+);
 
 export const userSlice = createSlice({
   name: 'user',
