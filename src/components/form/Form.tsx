@@ -29,7 +29,7 @@ export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSub
         {formHeader}
       </Typography>
       <form>
-        <Grid container spasing={2}>
+        <Grid container spacing={2}>
           {fieldsList.map(field => {
             return (
               <Grid item
