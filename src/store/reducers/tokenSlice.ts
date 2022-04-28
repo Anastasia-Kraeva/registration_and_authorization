@@ -4,7 +4,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IAppState, userType} from './types';
 import * as actions from '../actions/actionCreaters';
 
-const initialState: IAppState = JSON.parse(localStorage.getItem('token')) || {}
+const initialState: IAppState = {}
 
 export const tokenSlice = createSlice({
   name: 'token',
