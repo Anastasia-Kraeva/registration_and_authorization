@@ -41,19 +41,15 @@ const LoginForm:FC<ILoginFormProps> = ({formRenderingData}): JSX.Element => {
   };
 
   const login = async (data: ILoginData): Promise<IToken | undefined> => {
-    debugger
     try {
       const response = await axios.post(`${BASE_URL}/login/`, data);
-      console.log('login', response);
       return response.data;
-      // return //test
     } catch (e) {
       console.log(e);
     }
   };
 
   async function handleSubmit(data: ILoginData): Promise<void> {
-    console.log('submit', data);
     const token:IToken | undefined = await login(data);
     if (token) {
       dispatch(actions.login(token));

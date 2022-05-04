@@ -36,10 +36,8 @@ const PreLoginForm: FC<IPreLoginFormRenderingDataProps> = ({setIsAccess, formRen
   };
 
   const preLogin = async (data: IPreLoginData): Promise<void> => {
-    debugger
     try {
       const response = await axios.post(`${BASE_URL}/pre-login/`, data);
-      console.log('response', response);
       setIsAccess(true);
     } catch (e) {
       console.log(e);
@@ -47,7 +45,6 @@ const PreLoginForm: FC<IPreLoginFormRenderingDataProps> = ({setIsAccess, formRen
   };
 
   async function handleSubmit(data: IPreLoginData): Promise<void> {
-    console.log('submit', data);
     preLogin(data);
   }
 

@@ -40,13 +40,10 @@ const HomePage: FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   function logout(): void {
-    debugger
     dispatch(actions.logout());
 
     try {
-      axios.post(`${BASE_URL}/logout/`).then(response => {
-        console.log('logout', response);
-      });
+      axios.post(`${BASE_URL}/logout/`)
     } catch (e) {
       console.log(e);
     }

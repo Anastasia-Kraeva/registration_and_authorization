@@ -60,31 +60,26 @@ const RegisterPage: FC = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const activateAccount = async (key: string): Promise<void> => {
-    debugger
     try {
       const response = await axios.post(`${BASE_URL}/register/verify`, {key});
-      console.log('activateAccount', response);
     } catch (e) {
       console.log(e);
     }
   };
 
   const registration = async (data: IRegistrationData): Promise<registrationResponseDataType | undefined> => {
-    debugger
     try {
       const response = await axios.post(`${BASE_URL}/register/`, data);
       return response.data;
-      // return//test
     } catch (e) {
       console.log(e);
     }
   };
 
   async function handleSubmit(data: IRegistrationData): Promise<void> {
-    debugger
     try {
       const userData: registrationResponseDataType | undefined = await registration(data);
-      debugger
+
       if (userData) {
         localStorage.setItem('user', JSON.stringify({data: userData}));
         dispatch(actions.addUser(userData));
