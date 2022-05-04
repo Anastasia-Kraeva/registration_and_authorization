@@ -1,4 +1,5 @@
-// @ts-nocheck
+import React, {FC} from 'react';
+
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import AuthPage from './pages/Auth.page';
@@ -6,7 +7,7 @@ import HomePage from './pages/Home.page';
 import RegisterPage from './pages/Register.page';
 
 interface IRoutes {
-  hasToken?: boolean;
+  isAuthed?: boolean;
 }
 
 const AvailableRoutes: FC<IRoutes> = ({isAuthed}): JSX.Element => {

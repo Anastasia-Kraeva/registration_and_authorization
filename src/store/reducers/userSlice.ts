@@ -1,10 +1,10 @@
-// @ts-nocheck
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {IAppState, userType} from './types';
+import {IAppState, IUserState} from '../../types/store';
+import {registrationResponseDataType} from '../../types/apiWork';
 import * as actions from '../actions/actionCreaters';
 
-const initialState: IAppState = Object.assign(
+const initialState: IUserState = Object.assign(
   {
     data: {
       username: '',
@@ -13,7 +13,7 @@ const initialState: IAppState = Object.assign(
       password2: '',
       keyword: '',
       confirmationCode: '',
-      ...JSON.parse(localStorage.getItem('user')).data
+      ...JSON.parse(localStorage.getItem('user') || '{}')?.data,
     },
   }
 );
@@ -24,11 +24,11 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(actions.addUser, (state, action: PayloadAction<userType>) => {
+      .addCase(actions.addUser, (state, action: PayloadAction<registrationResponseDataType>) => {
         state.data = {...state.data, ...action.payload};
       })
-      .addCase(actions.logout, (state, action: PayloadAction<userType>) => {
-        state.data = {};
+      .addCase(actions.logout, (state, action: PayloadAction<undefined>) => {
+        state.data = initialState.data;
       });
   }
 });

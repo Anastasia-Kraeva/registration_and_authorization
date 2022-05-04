@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, {FC, useState} from 'react';
 
 import Box from '@mui/material/Box';
@@ -6,13 +5,21 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import {useTypedSelector} from '../../hooks/typedSelector';
+import {formDataType, formRenderingDataType, IField} from '../../types/form';
 
 import Input from '../input/Input';
 
-export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSubmit}): JSX.Element => {
-  const initialFormData = useTypedSelector(state => state.user.data);
-  const [formData, setFormData] = useState<IFormData>(initialFormData);
+export type formPropsType = formRenderingDataType<any>
+
+const Form: FC<formPropsType> = (props): JSX.Element => {
+  const {
+    formHeader,
+    fieldsList,
+    formButtonText,
+    handleSubmit,
+    initialFormData
+  } = props;
+  const [formData, setFormData] = useState<formDataType>(initialFormData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const {name, value} = event.target;
@@ -28,15 +35,19 @@ export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSub
       <Typography component="h1" variant="h5">
         {formHeader}
       </Typography>
-      <form>
+      <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        handleSubmit(formData);
+      }}>
         <Grid container spacing={2}>
-          {fieldsList.map(field => {
+          {fieldsList.map((field: IField) => {
             return (
               <Grid item
                     key={field.name}
                     sm={12}>
                 <Input
                   {...field}
+                  name={field.name}
                   value={formData[field.name]}
                   onChange={handleChange}
                 />
@@ -47,9 +58,7 @@ export const Form: FC<any> = ({formHeader, fieldsList, formButtonText, handleSub
             <Button
               variant="contained"
               fullWidth
-              onClick={() => {
-                handleSubmit(formData);
-              }}
+              type="submit"
             >
               {formButtonText}
             </Button>

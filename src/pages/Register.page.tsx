@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useSearchParams} from 'react-router-dom';
@@ -9,10 +9,22 @@ import Container from '@mui/material/Container';
 import {BASE_URL} from '../constants/constants';
 import * as actions from '../store/actions/actionCreaters';
 
+import {useTypedSelector} from '../hooks/typedSelector';
+import {
+  IRegistrationData,
+  registrationResponseDataType,
+  IPreLoginData,
+  ILoginData,
+} from '../types/apiWork';
+import {IAppState, IUserStateKey} from '../types/store';
+import {formDataTypeKey, formRenderingDataType} from '../types/form';
+
 import Form from '../components/form/Form';
 
-const RegisterPage = () => {
-  const formRenderingData = {
+const RegisterPage: FC = (): JSX.Element => {
+  const initialFormData = useTypedSelector(state => state.user.data);
+
+  const formRenderingData: formRenderingDataType<IRegistrationData> = {
     formHeader: 'Регистрация',
     fieldsList: [
       {
@@ -40,46 +52,39 @@ const RegisterPage = () => {
     ],
     formButtonText: 'Зарегистрироваться',
     handleSubmit: handleSubmit,
+    initialFormData: initialFormData,
   };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const activateAccount = async (key: string) => {
+  const activateAccount = async (key: string): Promise<void> => {
+    debugger
     try {
       const response = await axios.post(`${BASE_URL}/register/verify`, {key});
       console.log('activateAccount', response);
-      return response.data;
     } catch (e) {
       console.log(e);
     }
   };
 
-  const registration = async (data: any) => {
+  const registration = async (data: IRegistrationData): Promise<registrationResponseDataType | undefined> => {
+    debugger
     try {
       const response = await axios.post(`${BASE_URL}/register/`, data);
-      console.log('registration', response);
       return response.data;
+      // return//test
     } catch (e) {
       console.log(e);
     }
   };
 
-  async function handleSubmit(formData: any) {
+  async function handleSubmit(data: IRegistrationData): Promise<void> {
+    debugger
     try {
-      const requestData = {};
-
-      Object.keys(formData)
-        .forEach((key: string) => {
-          if (key !== 'confirmationCode') {
-            requestData[key] = formData[key];
-          };
-        });
-
-      console.log('submit', requestData);
-      const userData = await registration(requestData);
-
+      const userData: registrationResponseDataType | undefined = await registration(data);
+      debugger
       if (userData) {
         localStorage.setItem('user', JSON.stringify({data: userData}));
         dispatch(actions.addUser(userData));
@@ -90,7 +95,7 @@ const RegisterPage = () => {
   }
 
   useEffect(() => {
-    const accessKey = searchParams.get('key');
+    const accessKey: string | null = searchParams.get('key');
 
     if (accessKey) {
       activateAccount(accessKey);

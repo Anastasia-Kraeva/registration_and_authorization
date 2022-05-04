@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, {FC} from 'react';
 import {useDispatch} from 'react-redux';
 import axios from 'axios';
@@ -11,12 +10,12 @@ import * as actions from '../store/actions/actionCreaters';
 import {useTypedSelector} from '../hooks/typedSelector';
 
 import NavBar from '../components/navBar/NavBar';
-import {INavElement} from '../components/navBar/types';
+import {navElementType, ILoginElement, ILogoutElement} from '../components/navBar/types';
 
-const HomePage: FC<any> = (): JSX.Element => {
+const HomePage: FC = (): JSX.Element => {
   const {access} = useTypedSelector(state => state.token);
 
-  const loginElement = {
+  const loginElement: ILoginElement = {
     tag: Link,
     props: {
       href: '/registration',
@@ -25,7 +24,7 @@ const HomePage: FC<any> = (): JSX.Element => {
     },
   };
 
-  const logoutElement = {
+  const logoutElement: ILogoutElement = {
     tag: Button,
     props: {
       color: 'inherit',
@@ -34,13 +33,14 @@ const HomePage: FC<any> = (): JSX.Element => {
     },
   };
 
-  const navElements: INavElement[] = [
+  const navElements: navElementType[] = [
     access ? logoutElement : loginElement
   ];
 
   const dispatch = useDispatch();
 
-  function logout() {
+  function logout(): void {
+    debugger
     dispatch(actions.logout());
 
     try {

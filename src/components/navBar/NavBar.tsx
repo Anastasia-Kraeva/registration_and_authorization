@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, {FC} from 'react';
 
 import AppBar from '@mui/material/AppBar';
@@ -7,9 +6,9 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import {INavElement, INavBarProps} from './types';
+import {INavBarProps} from './types';
 
-const NavBar: FC<INavBarProps> = ({title, navElements}) => {
+const NavBar: FC<INavBarProps> = ({title, navElements}): JSX.Element => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
