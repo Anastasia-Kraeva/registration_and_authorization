@@ -5,7 +5,7 @@
 1. Clone the repository
 
 ```
-  git clone ссылка
+  git clone https://github.com/Anastasia-Kraeva/registration_and_authorization.git
 ```
 
 2. Install node modules using the command:
