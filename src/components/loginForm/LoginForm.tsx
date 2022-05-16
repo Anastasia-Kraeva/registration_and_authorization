@@ -4,8 +4,8 @@ import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 import {ILoginData} from '../../types/apiWork';
-import {formRenderingDataType, AuthFormRenderingDataType} from '../../types/form';
 import {IToken} from '../../types/store';
+import {formRenderingDataType, AuthFormRenderingDataType} from '../../types/form';
 import * as actions from '../../store/actions/actionCreaters';
 import {BASE_URL} from '../../constants/constants';
 

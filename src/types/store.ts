@@ -9,8 +9,6 @@ export interface IUserState {
   };
 }
 
-export type IUserStateKey = keyof IUserState
-
 export interface IToken {
   refresh: string | null,
   access: string | null,
@@ -19,8 +17,3 @@ export interface IToken {
 export type tokenStateType = IToken
 
 export type tokenStateTypeKey = keyof tokenStateType
-
-export interface IAppState {
-  user: IUserState;
-  token: tokenStateType;
-}

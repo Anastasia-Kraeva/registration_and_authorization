@@ -13,11 +13,8 @@ import {useTypedSelector} from '../hooks/typedSelector';
 import {
   IRegistrationData,
   registrationResponseDataType,
-  IPreLoginData,
-  ILoginData,
 } from '../types/apiWork';
-import {IAppState, IUserStateKey} from '../types/store';
-import {formDataTypeKey, formRenderingDataType} from '../types/form';
+import {formRenderingDataType} from '../types/form';
 
 import Form from '../components/form/Form';
 
@@ -61,7 +58,7 @@ const RegisterPage: FC = (): JSX.Element => {
 
   const activateAccount = async (key: string): Promise<void> => {
     try {
-      const response = await axios.post(`${BASE_URL}/register/verify`, {key});
+      await axios.post(`${BASE_URL}/register/verify`, {key});
     } catch (e) {
       console.log(e);
     }

@@ -2,7 +2,6 @@ import React, {FC, useState} from 'react';
 
 import Container from '@mui/material/Container';
 
-import {BASE_URL} from '../constants/constants';
 import {AuthFormRenderingDataType} from '../types/form';
 
 import PreLoginForm from '../components/preLoginForm/PreLoginForm';

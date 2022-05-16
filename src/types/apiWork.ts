@@ -17,8 +17,6 @@ export interface IPreLoginData {
   password: string;
 }
 
-export type preLoginResponseDataType = IPreLoginData
-
 export interface ILoginData {
   code: string;
   email: string;

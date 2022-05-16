@@ -9,7 +9,7 @@ export interface ILoginElement {
     color?: string;
     children: string;
   };
-};
+}
 
 export interface ILogoutElement {
   tag: ExtendButtonBase<ButtonTypeMap<{}, 'button'>>;

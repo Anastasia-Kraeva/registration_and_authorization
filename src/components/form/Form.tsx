@@ -44,7 +44,8 @@ const Form: FC<formPropsType> = (props): JSX.Element => {
             return (
               <Grid item
                     key={field.name}
-                    sm={12}>
+                    sm={12}
+              >
                 <Input
                   {...field}
                   name={field.name}

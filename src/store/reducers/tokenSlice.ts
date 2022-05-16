@@ -21,7 +21,7 @@ export const tokenSlice = createSlice({
             state[key] = action.payload[key];
           });
       })
-      .addCase(actions.logout, (state, action: PayloadAction<undefined>) => {
+      .addCase(actions.logout, (state) => {
         (Object.keys(state) as tokenStateTypeKey[])
           .forEach((key) => {
             state[key] = null;

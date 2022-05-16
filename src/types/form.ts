@@ -1,11 +1,8 @@
-import React from 'react';
-
 import {IRegistrationData, ILoginData, IPreLoginData} from './apiWork';
 
 // тип полей которые храним в состоянии перед отправкой на сервер
 export type formDataType = IRegistrationData & IPreLoginData & ILoginData
 
-//  ключи типа полей формы
 export type formDataTypeKey = keyof formDataType
 
 // тип данных для отрисовки инпута
@@ -24,4 +21,5 @@ export type formRenderingDataType<handleSubmitDataType, initialFormDataType = ha
   initialFormData: initialFormDataType,
 }
 
+// тип данных для отрисовки формы login/preLogin
 export type AuthFormRenderingDataType = Pick<formRenderingDataType<any>, 'formHeader' | 'formButtonText'>

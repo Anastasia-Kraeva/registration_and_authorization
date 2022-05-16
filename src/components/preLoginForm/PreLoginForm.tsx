@@ -37,7 +37,7 @@ const PreLoginForm: FC<IPreLoginFormRenderingDataProps> = ({setIsAccess, formRen
 
   const preLogin = async (data: IPreLoginData): Promise<void> => {
     try {
-      const response = await axios.post(`${BASE_URL}/pre-login/`, data);
+      await axios.post(`${BASE_URL}/pre-login/`, data);
       setIsAccess(true);
     } catch (e) {
       console.log(e);
